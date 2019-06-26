@@ -17,10 +17,11 @@
   },
   "homepage": "https://github.com/costargc/quantla-bot#readme",
   "dependencies": {
+    "bluebird": "^3.5.5",
+    "cli-table": "^0.3.1",
     "colors": "^1.3.3",
     "inquirer": "^6.4.1",
     "request": "^2.88.0",
-    "sentiment": "^5.0.1",
     "xml-js": "^1.6.11"
   }
 }
