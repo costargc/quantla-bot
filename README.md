@@ -11,7 +11,7 @@ To run the app you will need node:
 node quantla.js
 ```
 
-![Screenshot](images/quantla-bot_git.gif)
+![Screenshot](images/quantla-bot_gif.gif)
 
 ### In this bot are able to:
 
