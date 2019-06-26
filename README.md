@@ -16,8 +16,8 @@ node quantla.js
 ### In this bot you are able to:
 
 1. Retrieve news from google RSS based on the *crypto coin* that you want (only selected top volume ones).
-    + grab the link from the 5 recent/relevant news.
-    + link in IBM Watson sentiment analysis to get the score if the news is positive or negative.
+    A. grab the link from the 5 recent/relevant news.
+    B. link in IBM Watson sentiment analysis to get the score if the news is positive or negative.
 
 2. Retrieve prices from alphavantage api.
     * You will be able to grab the most recent 5 ticks (60min time frame) with its last variation.
