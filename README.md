@@ -13,7 +13,7 @@ node quantla.js
 
 ![Screenshot](images/quantla-bot_gif.gif)
 
-### In this bot are able to:
+### In this bot you are able to:
 
 1. Retrieve news from google RSS based on the *crypto coin* that you want (only selected top volume ones).
     a. grab the link from the 5 recent/relevant news.
