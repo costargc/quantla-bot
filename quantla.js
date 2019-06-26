@@ -7,6 +7,7 @@ var Promise = require("bluebird");
 var request = Promise.promisifyAll(require("request"), { multiArgs: true });
 
 apikey = grabmykey();
+console.log('\033[2J');
 
 inquirer
     .prompt([
@@ -27,7 +28,7 @@ inquirer
             },
             type: 'list',
             name: 'company',
-            message: "What 'company' do you need?",
+            message: "What 'coin' do you need?",
             choices: [
                 'BTC Bitcoin',
                 'LTC Litecoin',

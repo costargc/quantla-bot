@@ -11,6 +11,8 @@ To run the app you will need node:
 node quantla.js
 ```
 
+![Screenshot](images/quantla-bot_git.gif)
+
 ### In this bot are able to:
 
 1. Retrieve news from google RSS based on the *crypto coin* that you want (only selected top volume ones).
