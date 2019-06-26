@@ -6,6 +6,11 @@ This is a LIRI bot. LIRI is like iPhone's SIRI. However, while SIRI is a Speech 
 
 This is a cryptocurrency trading bot that help you accessing important data to trade in the market.
 
+To run the app you will need node:
+```js
+node quantla.js
+```
+
 ### In this bot are able to:
 
 1. Retrieve news from google RSS based on the *crypto coin* that you want (only selected top volume ones).
