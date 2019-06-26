@@ -47,19 +47,19 @@ require(`./keys.js`)
 ```js
 console.log('this is loaded');
 
-exports.spotify = {
-  id: process.env.SPOTIFY_ID,
-  secret: process.env.SPOTIFY_SECRET
+exports.apiservice = {
+  id: process.env.APISERVICE_ID,
+  secret: process.env.APISERVICE_SECRET
 };
 ```
 
 4. You can also create a file named `.env`, add the following to it, replacing the values with your API keys (no quotes) once you have them:
 
 ```js
-# Spotify API keys
+# apiservice API keys
 
-SPOTIFY_ID=your-spotify-id
-SPOTIFY_SECRET=your-spotify-secret
+APISERVICE_ID=your-apiservoce-id
+APISERVICE_SECRET=your-apiservoce-secret
 
 ```
 
