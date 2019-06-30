@@ -5,6 +5,7 @@ var convert = require('xml-js');
 var Table = require('cli-table');
 var Promise = require("bluebird");
 var request = Promise.promisifyAll(require("request"), { multiArgs: true });
+var fs = require('fs');
 
 apikey = grabmykey();
 console.log('\033[2J');
@@ -85,6 +86,11 @@ inquirer
     .then(answers => {
 
 
+        fs.appendFile("log.txt", "What do you want to do?: {" + answers.selection + "}\n", function (err) {
+            if (err) throw err;
+        })
+
+
         switch (answers.selection) {
             case 'Check News':
                 checknews();
@@ -114,10 +120,24 @@ inquirer
         // checkfundamentals function START
         function checkfundamentals() {
 
+            fs.appendFile("log.txt", "What key market fundamentals do you want to check?: {" + answers.runPrice + "}\n", function (err) {
+                if (err) throw err;
+            })
+
 
             if (answers.runPrice == 'US Sector Performance (realtime)') {
                 queryURL = 'https://www.alphavantage.co/query?function=SECTOR&apikey=' + apikey;
                 request(queryURL, { json: true }, function (error, response, body) {
+
+
+                    fs.appendFile("log.txt", "Response: " + JSON.stringify(response).replace(grabmykey(), "*************").replace(grabmykey(), "*************").replace(grabmykey(), "*************").replace(grabmykey(), "*************") + "\n", function (err) {
+                        if (err) throw err;
+
+                        fs.appendFile("log.txt", "--------------------------------------------\n", function (err) {
+                            if (err) throw err;
+                        })
+                    })
+
 
                     data = body['Rank A: Real-Time Performance'];
                     keys = Object.keys(body['Rank A: Real-Time Performance']);
@@ -170,6 +190,14 @@ inquirer
                         return [JSON.parse(body), url];
                     });
                 }).then(function (results) {
+
+                    fs.appendFile("log.txt", "Response: " + JSON.stringify(results) + "\n", function (err) {
+                        if (err) throw err;
+
+                        fs.appendFile("log.txt", "--------------------------------------------\n", function (err) {
+                            if (err) throw err;
+                        })
+                    })
 
 
                     // console.log(results[1][0].values);
@@ -230,6 +258,13 @@ inquirer
                     });
                 }).then(function (results) {
 
+                    fs.appendFile("log.txt", "Response: " + JSON.stringify(results) + "\n", function (err) {
+                        if (err) throw err;
+
+                        fs.appendFile("log.txt", "--------------------------------------------\n", function (err) {
+                            if (err) throw err;
+                        })
+                    })
 
                     // console.log(results[1][0].values);
 
@@ -275,6 +310,15 @@ inquirer
             else {
                 queryURL = 'https://api.blockchain.info/pools?cors=true';
                 request(queryURL, { json: true }, function (error, response, body) {
+
+                    fs.appendFile("log.txt", "Response: " + JSON.stringify(response) + "\n", function (err) {
+                        if (err) throw err;
+
+                        fs.appendFile("log.txt", "--------------------------------------------\n", function (err) {
+                            if (err) throw err;
+                        })
+                    })
+
                     keys = Object.keys(body);
                     var owndata = [];
                     var sum_pool = 0;
@@ -298,7 +342,7 @@ inquirer
                     owntable.sort(sortFunction);
 
                     for (i = 0; i < owndata.length; i++) {
-                        owntable[i][1] = owntable[i][1]+"%"
+                        owntable[i][1] = owntable[i][1] + "%"
                     }
 
                     function sortFunction(a, b) {
@@ -347,10 +391,27 @@ inquirer
 
             symbol = choicesobj[answers.company];
 
+            fs.appendFile("log.txt", "What 'coin' do you need?: {" + answers.company + "}\n", function (err) {
+                if (err) throw err;
+            })
+
+            fs.appendFile("log.txt", "Display trend analysis (buy and sell points)?: {" + answers.runPrice + "}\n", function (err) {
+                if (err) throw err;
+            })
+
+
             queryURL = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=' + symbol + '&interval=' + interval + '&apikey=' + apikey;
             // console.log(queryURL);
 
             request(queryURL, { json: true }, function (error, response, body) {
+
+                fs.appendFile("log.txt", "Response: " + JSON.stringify(response).replace(grabmykey(), "*************").replace(grabmykey(), "*************").replace(grabmykey(), "*************").replace(grabmykey(), "*************") + "\n", function (err) {
+                    if (err) throw err;
+
+                    fs.appendFile("log.txt", "--------------------------------------------\n", function (err) {
+                        if (err) throw err;
+                    })
+                })
 
                 keys = Object.keys(body['Time Series (60min)']);
                 // console.log(keys);
@@ -436,9 +497,26 @@ inquirer
         // checknews function START
         function checknews() {
 
+            fs.appendFile("log.txt", "What 'coin' do you need?: {" + answers.company + "}\n", function (err) {
+                if (err) throw err;
+            })
+
+            fs.appendFile("log.txt", "Run IBM Watson sentiment analysis?: {" + answers.runSentiment + "}\n", function (err) {
+                if (err) throw err;
+            })
+
             var queryURL = 'https://news.google.com/rss/search?q=' + answers.company + '+ news&hl=en-US&gl=US&ceid=US:en';
 
             request(queryURL, { json: true }, function (error, response, body) {
+
+                fs.appendFile("log.txt", "Response: " + JSON.stringify(response).replace(grabmykey(), "*************").replace(grabmykey(), "*************").replace(grabmykey(), "*************").replace(grabmykey(), "*************") + "\n", function (err) {
+                    if (err) throw err;
+
+                    fs.appendFile("log.txt", "--------------------------------------------\n", function (err) {
+                        if (err) throw err;
+                    })
+
+                })
 
                 var results = JSON.parse(convert.xml2json(body, { compact: true, spaces: 4 }));
                 // console.log(results.rss.channel.item[0]);
@@ -473,6 +551,17 @@ inquirer
 
 
                         request(options, function (err, res, watsondata) {
+
+
+                            fs.appendFile("log.txt", "IBM Response: " + JSON.stringify(res).replace(grabmykey(), "*************").replace(grabmykey(), "*************").replace(grabmykey(), "*************").replace(grabmykey(), "*************") + "\n", function (err) {
+                                if (err) throw err;
+
+                                fs.appendFile("log.txt", "--------------------------------------------\n", function (err) {
+                                    if (err) throw err;
+                                })
+
+                            })
+
                             // if (err) {
                             //     console.error('error posting json: ', err)
                             //     throw err
@@ -509,6 +598,9 @@ inquirer
                 };
 
             });
+
+
+
         }
         // checknews function END
 
