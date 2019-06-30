@@ -40,6 +40,7 @@ var convert = require('xml-js');
 var Table = require('cli-table');
 var Promise = require("bluebird");
 var request = Promise.promisifyAll(require("request"), { multiArgs: true });
+var fs = require('fs');
 ```
 
 2. Make a `.gitignore` file to remove "/node_modules" as this is not required if you want to push to github.
